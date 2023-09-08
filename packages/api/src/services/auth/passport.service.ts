@@ -8,7 +8,7 @@ import * as Errors from "@error";
 import { User } from "@prisma/client";
 
 /**
- * @param identifier Either `email` or `username` of the user to verify
+ * @param identifier `email` of the user to verify
  * @param password Password entered by the user and to be verified with the password (hashed) stored in DB
  * @param done Function to call once there is `user` or an `error`
  * @description Callback function to verify where the input provided by user matches with that from the DB. Throws error if user is not found or the password is mismatched

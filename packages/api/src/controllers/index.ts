@@ -1,3 +1,4 @@
 import * as Auth from "./auth";
+import * as Community from "./community";
 
-export { Auth };
+export { Auth, Community };
