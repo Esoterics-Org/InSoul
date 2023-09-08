@@ -18,6 +18,8 @@
       "@interfaces/*": ["./src/global/interfaces/*"],
       "@constants": ["./src/global/constants"],
       "@constants/*": ["./src/global/constants/*"],
+      "@states": ["src/global/states"],
+      "@states/*": ["src/global/states/*"],
       "@error": ["./src/global/response/error"],
       "@error/*": ["./src/global/response/error/*"],
       "@success": ["./src/global/response/success"],
