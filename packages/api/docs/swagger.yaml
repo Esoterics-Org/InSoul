@@ -1,0 +1,228 @@
+openapi: 3.0.0
+
+info:
+  title: REST API Template
+  version: 1.0.0
+  description: REST API template for your projects with basic authentication setup
+
+servers:
+  - url: http://localhost:5000/api/v1
+    description: "Localhost"
+
+paths:
+  /auth/login:
+    post:
+      description: "User Login"
+      tags:
+        - Authentication
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                identifier:
+                  type: string
+                  example: "codadept"
+                password:
+                  type: string
+                  example: "Your@Password123"
+
+      responses:
+        "200":
+          description: "User Logged in successfully"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: "User Logged In Successfully."
+        "500":
+          description: "Authentication Error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  status:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: "Authentication error"
+        "404":
+          description: "User not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  status:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: "User Not Found"
+
+  /auth/logout:
+    post:
+      description: User Logout
+      tags:
+        - Authentication
+      responses:
+        "200":
+          description: "User Logged out successfully"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: "User Logged Out Successfully."
+        "500":
+          description: "Authentication Error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  status:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: "Authentication error"
+        "404":
+          description: "User Not Logged In"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  status:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: "User Not Logged In"
+
+  /auth/register:
+    post:
+      description: User Regisration
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Pratik Majumdar"
+                email:
+                  type: string
+                  example: "info.pratikmajumdar@gmail.com"
+                password:
+                  type: string
+                  example: "Your@Password123"
+                username:
+                  type: string
+                  example: "codadept"
+
+      responses:
+        "201":
+          description: "User Created Successfully."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: "User Created Successfully."
+        "500":
+          description: "Authentication Error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  status:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: "Authentication error"
+        "404":
+          description: "User Already Logged In"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  status:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: "User Already Logged In"
+
+        "406":
+          description: "Missing Inputs"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  status:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: "Missing Inputs"

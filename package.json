@@ -1,0 +1,16 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "prepare": "husky install",
+    "preinstall": "npx only-allow pnpm",
+    "pre-commit": "lint-staged"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.9",
+    "lerna": "^7.2.0",
+    "typescript": "^5.2.2",
+    "lint-staged": "^13.0.3",
+    "husky": "^8.0.1"
+  }
+}
