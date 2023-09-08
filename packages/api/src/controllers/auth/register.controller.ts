@@ -29,6 +29,17 @@ const register: Interfaces.Controller.Async = async (req, res) => {
         .json(checkUserErrorResponse);
     }
 
+    const checkCommunityErrorResponse =
+      await Services.CommunityService.checkCommunity(
+        (req.body as Interfaces.Auth.RegisterBody).communityId
+      );
+
+    if (checkCommunityErrorResponse) {
+      return res
+        .status(checkCommunityErrorResponse.status)
+        .json(checkCommunityErrorResponse);
+    }
+
     const validateUserInputErrorResponse =
       Services.AuthService.validateUserInput(
         req.body as Interfaces.Auth.RegisterBody
