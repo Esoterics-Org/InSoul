@@ -2,4 +2,9 @@ interface CreateCommunity {
   name: string;
 }
 
-export { CreateCommunity };
+interface UpdateUserCommunity {
+  email: string;
+  communityId: string;
+}
+
+export { CreateCommunity, UpdateUserCommunity };

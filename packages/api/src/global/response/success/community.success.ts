@@ -1,5 +1,5 @@
 import * as Success from "@success";
-import { Community } from "@prisma/client";
+import { Community, User } from "@prisma/client";
 
 /**
  * @description Success class when user successfully fetched all the communities
@@ -18,4 +18,14 @@ class CommunityCreateSuccess extends Success.Success.CustomSuccess {
   }
 }
 
-export { SuccessfullyFetchCommunities, CommunityCreateSuccess };
+class UpdatedUserCommunity extends Success.Success.CustomSuccess<User> {
+  constructor(user: User) {
+    super(user, 200);
+  }
+}
+
+export {
+  SuccessfullyFetchCommunities,
+  CommunityCreateSuccess,
+  UpdatedUserCommunity,
+};
