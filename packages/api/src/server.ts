@@ -78,6 +78,7 @@ io.on("connection", Utils.Socket.onConnection);
 // =========================== ROUTES START ===========================
 
 app.use(`${Constants.Server.ROOT}/auth`, Routes.authRouter);
+app.use(`${Constants.Server.ROOT}/community`, Routes.communityRouter);
 
 // =========================== ROUTES END ===========================
 

@@ -8,9 +8,7 @@
     "start": "pnpm build && node ./dist/src/server.js",
     "build": "tsc && tsc-alias",
     "dev": "nodemon --exec ts-node ./src/server.ts",
-    "prisma:pull": "prisma db pull",
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev",
     "prisma:format": "prisma format"
   },
   "license": "GPL-3.0",

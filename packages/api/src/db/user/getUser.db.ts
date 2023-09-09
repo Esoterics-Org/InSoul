@@ -7,7 +7,7 @@ import { prisma } from "@utils";
 const getUserFromIdentifier = async (identifier: string) => {
   return await prisma.user.findFirst({
     where: {
-      OR: [{ email: identifier }, { username: identifier }],
+      email: identifier,
     },
   });
 };
@@ -24,16 +24,4 @@ const getUserFromEmail = async (email: string) => {
   });
 };
 
-/**
- * @param username The username of the user to find
- * @description Returns the user with the given username
- */
-const getUserFromUsername = async (username: string) => {
-  return await prisma.user.findFirst({
-    where: {
-      username,
-    },
-  });
-};
-
-export { getUserFromIdentifier, getUserFromEmail, getUserFromUsername };
+export { getUserFromIdentifier, getUserFromEmail };
