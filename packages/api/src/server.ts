@@ -5,6 +5,8 @@ import morgan from "morgan";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import cookieSession from "cookie-session";
+import {createServer} from "http";
+import { Server } from "socket.io";
 import passport from "passport";
 import swaggerUI from "swagger-ui-express";
 import yaml from "yamljs";
@@ -14,10 +16,18 @@ dotenv.config();
 import { initializePassport } from "@utils";
 import * as Routes from "@routes";
 import * as Constants from "@constants";
+import * as Utils from "@utils";
 
 initializePassport();
 
 const app = express();
+const server = createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    credentials: true,
+  }
+});
 
 // =========================== MIDDLEWARES START ===========================
 
@@ -59,12 +69,20 @@ app.use(
 
 // =========================== DOCS END ===========================
 
+// =========================== SOCKET START ===========================
+
+io.on("connection", Utils.Socket.onConnection);
+
+// =========================== SOCKET END ===========================
+
 // =========================== ROUTES START ===========================
 
 app.use(`${Constants.Server.ROOT}/auth`, Routes.authRouter);
 
 // =========================== ROUTES END ===========================
 
-app.listen(Constants.Server.PORT, () => {
+server.listen(Constants.Server.PORT, () => {
   console.log(`Server Listening to Port ${Constants.Server.PORT}`);
 });
+
+export {io};
