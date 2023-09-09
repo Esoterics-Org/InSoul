@@ -1,3 +1,3 @@
-import Rooms from "./roomState";
+import rooms from "./roomState";
 
-export { Rooms };
+export { rooms };
