@@ -15,7 +15,7 @@ import { User } from "@prisma/client";
  */
 const verifyUser: VerifyFunction = async (identifier, password, done) => {
   try {
-    const user = await DB.User.getUserFromIdentifier(identifier);
+    const user = await DB.User.getUserFromEmail(identifier);
 
     if (!user) {
       return done(new Errors.Auth.UserNotFound().message, false);

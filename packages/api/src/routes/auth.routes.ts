@@ -20,6 +20,12 @@ router.post(
   Controllers.Auth.register
 );
 
+router.post(
+  "/assignUsername",
+  Middlewares.Auth.isLoggedIn,
+  Controllers.Auth.assignUsername
+);
+
 router.post("/logout", Middlewares.Auth.isLoggedIn, Controllers.Auth.logout);
 
 export default router;

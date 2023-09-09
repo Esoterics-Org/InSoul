@@ -1,4 +1,13 @@
-import { getUserFromIdentifier, getUserFromEmail } from "./getUser.db";
+import { getUserFromEmail } from "./getUser.db";
 import { createUser } from "./createUser.db";
+import {
+  updateUserCommunityByEmail,
+  updateUserUsernameByEmail,
+} from "./updateUser.db";
 
-export { getUserFromIdentifier, getUserFromEmail, createUser };
+export {
+  getUserFromEmail,
+  createUser,
+  updateUserCommunityByEmail,
+  updateUserUsernameByEmail,
+};

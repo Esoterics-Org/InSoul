@@ -10,7 +10,7 @@ class CommunityNotFound extends Error.Error.CustomError {
 }
 
 /**
- * @description Error class when community is not found with the given id
+ * @description Error class when community already exists
  */
 class CommunityWithSameNameExist extends Error.Error.CustomError {
   constructor() {
