@@ -4,9 +4,9 @@ import { User } from "@prisma/client";
 /**
  * @description Success class when user successfully logged in
  */
-class UserLoggedIn extends Success.Success.CustomSuccess {
-  constructor() {
-    super("User Logged In Successfully.", 200);
+class UserLoggedIn extends Success.Success.CustomSuccess<User> {
+  constructor(user: User) {
+    super(user, 200);
   }
 }
 

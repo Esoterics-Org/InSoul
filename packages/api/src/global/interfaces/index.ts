@@ -6,4 +6,12 @@ import * as JSONResponse from "./response.interface";
 import * as Soul from "./soul.interface";
 import * as Community from "./community.interface";
 
-export { Passport, Middleware, Controller, Auth, JSONResponse, Community, Soul };
+export {
+  Passport,
+  Middleware,
+  Controller,
+  Auth,
+  JSONResponse,
+  Community,
+  Soul,
+};

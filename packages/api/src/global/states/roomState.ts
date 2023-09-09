@@ -1,4 +1,4 @@
-import * as Interfaces from "@interfaces"
+import * as Interfaces from "@interfaces";
 
 const rooms = new Map<string, Array<Interfaces.Soul.Soul>>();
 
