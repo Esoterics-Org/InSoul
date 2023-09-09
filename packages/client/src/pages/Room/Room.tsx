@@ -107,7 +107,9 @@ const Room = () => {
 
   return (
     <div className={styles.room}>
-      <div className={styles["voice-chat"]}></div>
+      <div className={styles["voice-chat"]}>
+        <audio ref={audioElem} autoPlay playsInline></audio>
+      </div>
       <div className={styles["text-chat"]}>
         <div className={styles["msg-container"]}>
           {
