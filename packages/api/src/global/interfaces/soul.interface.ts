@@ -1,10 +1,8 @@
 import { Socket } from "socket.io";
 
 interface Soul {
-    roomId: string,
-    peerConnection: RTCPeerConnection,
+    userName: string,
     socket: Socket,
-    audioStream: MediaStream,
 }
 
 export {Soul}
