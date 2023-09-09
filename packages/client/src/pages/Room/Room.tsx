@@ -14,7 +14,9 @@ const Room = () => {
 
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<Array<{soulName: string, msg: string}>>([]);
-  const username = "jackass"
+  const [isMute, setIsMute] = useState<boolean>(false);
+  const [isThemMute, setThemMute] = useState<boolean>(false);
+  const username = "lufi"
 
   useEffect(() => {
     const servers = {
@@ -116,6 +118,22 @@ const Room = () => {
   return (
     <div className={styles.room}>
       <div className={styles["voice-chat"]}>
+        <div className={styles["avatar-container"]}>
+          <div className={styles.avatar}>
+            <img src="/defaultProfilePic.png" alt="" />
+          </div>
+          <div className={styles.avatar}>
+            <img src="/defaultProfilePic.png" alt="" />
+          </div>
+        </div>
+        <div className={styles.controls}>
+          <div className={`${styles.mute} ${isMute ? "" : styles.active }`}>
+            <img src="/microphone.png" alt="" />
+          </div>
+          <div className={`${styles.mute} ${isThemMute ? styles.active : ""}`}>
+          <img src="/play.png" alt="" />
+          </div>
+        </div>
         <audio ref={audioElem} autoPlay playsInline></audio>
       </div>
       <div className={styles["text-chat"]}>
