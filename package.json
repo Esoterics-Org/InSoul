@@ -4,13 +4,19 @@
   "scripts": {
     "prepare": "husky install",
     "preinstall": "npx only-allow pnpm",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "lint": "eslint . --ext .ts --fix",
+    "pretty": "pnpm prettier --write ."
   },
   "devDependencies": {
     "@types/node": "^20.5.9",
+    "husky": "^8.0.1",
     "lerna": "^7.2.0",
-    "typescript": "^5.2.2",
     "lint-staged": "^13.0.3",
-    "husky": "^8.0.1"
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "eslint": "^8.49.0",
+    "prettier": "^2.7.1"
   }
 }

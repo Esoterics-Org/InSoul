@@ -1,11 +1,12 @@
 import * as Success from "@success";
+import { User } from "@prisma/client";
 
 /**
  * @description Success class when user successfully logged in
  */
-class UserLoggedIn extends Success.Success.CustomSuccess {
-  constructor() {
-    super("User Logged In Successfully.", 200);
+class UserLoggedIn extends Success.Success.CustomSuccess<User> {
+  constructor(user: User) {
+    super(user, 200);
   }
 }
 
@@ -27,4 +28,13 @@ class UserCreated extends Success.Success.CustomSuccess {
   }
 }
 
-export { UserLoggedIn, UserLoggedOut, UserCreated };
+/**
+ * @description Success class when username is updated successfully
+ */
+class UsernameUpdated extends Success.Success.CustomSuccess<User> {
+  constructor(user: User) {
+    super(user, 200);
+  }
+}
+
+export { UserLoggedIn, UserLoggedOut, UserCreated, UsernameUpdated };
