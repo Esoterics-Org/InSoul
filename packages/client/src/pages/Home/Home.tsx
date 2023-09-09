@@ -10,6 +10,9 @@ const Home = () => {
 
   useEffect(() => {
     socketRef!.current = io(import.meta.env.VITE_BACKEND);
+    socketRef!.current.on("disconnect", () => {
+      console.log("disconnect");
+    })
   },[socketRef])
 
   const handleJoin = () => {
