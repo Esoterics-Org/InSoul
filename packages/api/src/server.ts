@@ -5,7 +5,7 @@ import morgan from "morgan";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import cookieSession from "cookie-session";
-import {createServer} from "http";
+import { createServer } from "http";
 import { Server } from "socket.io";
 import passport from "passport";
 import swaggerUI from "swagger-ui-express";
@@ -26,7 +26,7 @@ const io = new Server(server, {
   cors: {
     origin: "*",
     credentials: true,
-  }
+  },
 });
 
 // =========================== MIDDLEWARES START ===========================
@@ -86,4 +86,4 @@ server.listen(Constants.Server.PORT, () => {
   console.log(`Server Listening to Port ${Constants.Server.PORT}`);
 });
 
-export {io};
+export { io };
