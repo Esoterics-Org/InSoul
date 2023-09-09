@@ -1,16 +1,22 @@
 import { io } from "socket.io-client";
 import useSocketContext from "../../hooks/useSocketContext";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import styles from "./Room.module.scss";
+import Message from "../../component/Message/Message";
 
 const Room = () => {
   const socketRef = useSocketContext();
   const audioElem = useRef<HTMLAudioElement>(null);
   const localStream = useRef<MediaStream>();
   const remoteStream = useRef<MediaStream>();
-  const peerConnection = useRef<RTCPeerConnection>();
-  const username = "jackass";
+  const peerConnection = useRef<RTCPeerConnection>()
+
+  const [message, setMessage] = useState<string>("");
+  const [messages, setMessages] = useState<Array<{soulName: string, msg: string}>>([]);
+  const [isMute, setIsMute] = useState<boolean>(false);
+  const [isThemMute, setThemMute] = useState<boolean>(false);
+  const username = "lufi"
 
   useEffect(() => {
     const servers = {
@@ -27,7 +33,7 @@ const Room = () => {
     const handleInit = () => {
       console.log("init");
       socketRef!.current!.on("msg:recieve", (msg) => {
-        console.log(msg.text);
+        setMessages(prev => [...prev, {soulName: "ok", msg: msg.text}])
       });
     };
 
@@ -103,14 +109,51 @@ const Room = () => {
     });
   }, [socketRef]);
 
-  const handleSendMsg = (msg: string) => {
-    socketRef!.current!.emit("msg:send", { text: msg });
-  };
+  const handleSendMsg = () => {
+    socketRef!.current!.emit("msg:send", {text: message})
+    setMessages((prev) => [...prev, {soulName: username, msg: message}]);
+    setMessage("");
+  }
 
   return (
     <div className={styles.room}>
-      <button onClick={() => handleSendMsg("hello")}>test</button>
-      <audio ref={audioElem} autoPlay playsInline></audio>
+      <div className={styles["voice-chat"]}>
+        <div className={styles["avatar-container"]}>
+          <div className={styles.avatar}>
+            <img src="/defaultProfilePic.png" alt="" />
+          </div>
+          <div className={styles.avatar}>
+            <img src="/defaultProfilePic.png" alt="" />
+          </div>
+        </div>
+        <div className={styles.controls}>
+          <div className={`${styles.mute} ${isMute ? "" : styles.active }`}>
+            <img src="/microphone.png" alt="" />
+          </div>
+          <div className={`${styles.mute} ${isThemMute ? styles.active : ""}`}>
+          <img src="/play.png" alt="" />
+          </div>
+        </div>
+        <audio ref={audioElem} autoPlay playsInline></audio>
+      </div>
+      <div className={styles["text-chat"]}>
+        <div className={styles["msg-container"]}>
+          {
+            messages.map((message) => (
+              <Message msg={message.msg} isSelfMsg={message.soulName === username}/>
+            ))
+          }
+        </div>
+        <div className={styles["msg-form"]}>
+          <input 
+            className={styles["msg-input"]} 
+            type="text"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
+          <button className={styles["msg-send-btn"]} onClick={handleSendMsg}>SEND</button>
+        </div>
+      </div>
     </div>
   );
 };
