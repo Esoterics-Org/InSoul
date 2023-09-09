@@ -17,11 +17,13 @@ const createCommunity: Interfaces.Controller.Async = async (req, res) => {
         .json(checkCommunityNameErrorResponse);
     }
 
-    await DB.Community.createCommunity(name);
+    const createdCommunity = await DB.Community.createCommunity(name);
 
     return res
-      .status(new Success.Community.CommunityCreateSuccess().status)
-      .json(new Success.Community.CommunityCreateSuccess());
+      .status(
+        new Success.Community.CommunityCreateSuccess(createdCommunity).status
+      )
+      .json(new Success.Community.CommunityCreateSuccess(createdCommunity));
   } catch (err) {
     console.log((err as Error).message);
     return res.json(new Errors.Server.InternalServerError());

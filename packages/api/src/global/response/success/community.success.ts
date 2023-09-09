@@ -12,9 +12,9 @@ class SuccessfullyFetchCommunities extends Success.Success.CustomSuccess<
   }
 }
 
-class CommunityCreateSuccess extends Success.Success.CustomSuccess {
-  constructor() {
-    super("Successfully created community.", 200);
+class CommunityCreateSuccess extends Success.Success.CustomSuccess<Community> {
+  constructor(community: Community) {
+    super(community, 201);
   }
 }
 
