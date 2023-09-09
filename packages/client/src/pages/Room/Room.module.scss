@@ -1,4 +1,48 @@
 .room {
   height: 100vh;
-  background-color: black;
+  background-image: linear-gradient(to right, #000000,#3533cd);
+  display: flex;
+
+  .voice-chat {
+    height: 100%;
+    flex-grow: 1;
+  }
+
+  .text-chat {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #DAFBFE;
+    .msg-container {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: scroll;
+    }
+
+    .msg-form {
+      height: 5rem;
+      display: flex;
+      align-items: center;
+      background-color: black;
+      .msg-input {
+        height: 1.5rem;
+        flex-grow: 1;
+        margin: 0 0.5rem;
+        min-width: 0;
+        border: none;
+        outline: none;
+        border-radius: 0.2rem;
+      }
+      
+      .msg-send-btn {
+        height: 1.7rem;
+        width: 4rem;
+        border-radius: 0.25rem;
+        margin: 0 0.5rem;
+        border: none;
+      }
+    }
+  }
 }
