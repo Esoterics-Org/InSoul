@@ -24,7 +24,21 @@ const init = (socket: Socket) => {
     elem.socket.on("msg:send", (msg) => {
       elem.socket.broadcast.to(roomId as string).emit("msg:recieve", msg)
     })
+
+    elem.socket.on("sdpOffer:send", (offer) => {
+      elem.socket.broadcast.to(roomId as string).emit("sdpOffer:recieve", offer)
+    })
+
+    elem.socket.on("iceCandidate:send", (candidate) => {
+      elem.socket.broadcast.to(roomId as string).emit("iceCandidate:recieve", candidate)
+    })
+
+    elem.socket.on("sdpAnswer:send", (answer) => {
+      elem.socket.broadcast.to(roomId as string).emit("sdpAnswer:recieve", answer)
+    })
   })
+
+  socket.emit("wrtc:init");
 }
 
 export { init }

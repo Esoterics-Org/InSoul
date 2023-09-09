@@ -28,7 +28,6 @@ const onConnection = (socket: Socket) => {
   })
 
   socket.on("disconnecting", async () => {
-    // console.log("dis")
     socket.rooms.forEach((roomId) => States.rooms.delete(roomId));
   })
 }
