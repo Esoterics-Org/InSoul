@@ -8,6 +8,7 @@ import type {
   UserRegister,
 } from "../global/interfaces/authContext";
 import AuthContext from "./AuthContext";
+import { BASE_URL } from "../global/constant/api";
 
 const initialAuthState: AuthState = {
   user: JSON.parse(localStorage.getItem("user")!) as User,
@@ -39,35 +40,29 @@ const AuthProvider = ({ children }) => {
   const [authState, dispatch] = useReducer(authStateReducer, initialAuthState);
 
   const handleRegister = async (payload: UserRegister) => {
-    const response = await fetch(
-      `${import.meta.env.VITE_BACKEND}/api/v1/auth/register`,
-      {
-        method: "POST",
-        credentials: "include",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      }
-    );
+    const response = await fetch(`${BASE_URL}/auth/register`, {
+      method: "POST",
+      credentials: "include",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
     const data = await response.json();
     return data;
   };
 
   const handleLogin = async (payload: UserLogin) => {
-    const response = await fetch(
-      `${import.meta.env.VITE_BACKEND}/api/v1/auth/login`,
-      {
-        method: "POST",
-        credentials: "include",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      }
-    );
+    const response = await fetch(`${BASE_URL}/auth/login`, {
+      method: "POST",
+      credentials: "include",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
     const data = await response.json();
     if (response.status === 200) {
       localStorage.setItem("user", JSON.stringify(data.message));
@@ -80,12 +75,9 @@ const AuthProvider = ({ children }) => {
   };
 
   const handleLogout = async () => {
-    const response = await fetch(
-      `${import.meta.env.VITE_BACKEND}/api/v1/auth/logout`,
-      {
-        credentials: "include",
-      }
-    );
+    const response = await fetch(`${BASE_URL}/auth/logout`, {
+      credentials: "include",
+    });
     const data = await response.json();
     localStorage.removeItem("user");
     dispatch({ type: LOGOUT, payload: null });

@@ -7,7 +7,6 @@ import * as Errors from "@error";
 const searchCommunityByName: Interfaces.Controller.Async = async (req, res) => {
   try {
     const search = req.query.search as string;
-    console.log(search);
 
     const communities = await Services.CommunityService.searchCommunitiesByName(
       search

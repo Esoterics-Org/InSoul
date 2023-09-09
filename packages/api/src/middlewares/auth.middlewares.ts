@@ -13,7 +13,7 @@ const passportErrorHandler: ErrorRequestHandler = async (
 ) => {
   if (err) {
     // Here `err` is of type CustomError
-    return res.status(err.status).json(err);
+    return res.status(403).json(err);
   } else {
     return next();
   }
