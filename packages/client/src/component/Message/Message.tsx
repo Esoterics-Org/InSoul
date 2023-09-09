@@ -8,7 +8,7 @@ const Message = ({msg, isSelfMsg}) => {
       <div 
         className={styles.message}
         style={{
-          backgroundColor: isSelfMsg ? "#74D295" : "#5E97FF",
+          backgroundColor: isSelfMsg ? "#95daad" : "#93b9ff",
           marginLeft: isSelfMsg ? "auto" : "unset"
         }}
       >{msg}</div>
